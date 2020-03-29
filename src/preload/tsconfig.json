@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.esm.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "../../.tmp/out/preload"
+  },
+  "references": [
+    {
+      "path": "../common"
+    }
+  ]
+}

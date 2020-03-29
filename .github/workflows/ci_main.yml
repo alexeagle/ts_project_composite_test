@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+    types: ['opened', 'reopened', 'synchronize']
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    name: ${{ matrix.os }} build
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: install
+      run: |
+        npm install -g npm@latest
+    - name: shellcheck
+      if: runner.os == 'Windows'
+      run: which bash
+    - name: build
+      run: |
+        npm test
